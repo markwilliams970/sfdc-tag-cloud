@@ -34,8 +34,8 @@ python -m SimpleHTTPServer
 ```
 
 Now navigate to http://localhost:8000/
-Profit!
+Enjoy!
 
 ### Adding more visualizations
 
-TODO: Document this :)
+TODO: Documentation :)
