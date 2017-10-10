@@ -1,0 +1,18 @@
+{
+  "name": "fdvis",
+  "version": "0.0.0",
+  "description": "Visualizations on SFDC Topic Usage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Williams",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "bluebird": "~1.1.1",
+    "jsforce": "^1.8.0",
+    "lodash": "~2.4.1",
+    "restler": "~3.2.0"
+  }
+}
