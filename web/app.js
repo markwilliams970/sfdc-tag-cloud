@@ -4,7 +4,7 @@ app = angular.module('fdvis', ['ngRoute']);
 
 app.constant('fdVisualizations', [{
   group: 'Case Data by Topic',
-  name: 'Total by Topic',
+  name: 'Top 25 Trending Topics',
   route: '/totalByTopic',
   href: '/vis/totalByTopic.html'
 }]);

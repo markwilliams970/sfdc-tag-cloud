@@ -3,19 +3,16 @@
 
 function TotalsByTopicController(fdVisualizationData) {
   var
-    usersByID,
     normalizedData,
+    sortedNormalizedData,
+    topTrendCount = 25,
     width = 1400,
     height = 900,
     format = d3.format(",d"),
     color = d3.scale.category20c();
 
-  console.log(fdVisualizationData);
-
   topicsByName = _.indexBy(fdVisualizationData.topics, 'TopicName');
   topicTotalMessages = _.groupBy(fdVisualizationData.topics, 'TopicName');
-  console.log(topicsByName);
-  console.log(topicTotalMessages);
 
   normalizedData = _(topicTotalMessages).transform(function (result, topicAssignments, topic) {
     if (topicsByName[topic]) {
@@ -25,6 +22,12 @@ function TotalsByTopicController(fdVisualizationData) {
       };
     }
   }).map(function (val) { return val; }).value();
+
+  // console.log(normalizedData);
+
+  sortedNormalizedData = normalizedData;
+  sortedNormalizedData.sort( function( a, b ) { return b.value - a.value; } );
+  sortedNormalizedData.splice(topTrendCount);
 
   var bubble = d3.layout.pack()
     .sort(null)
@@ -39,7 +42,7 @@ function TotalsByTopicController(fdVisualizationData) {
   d3.select(self.frameElement).style("height", height + "px");
 
   var node = svg.selectAll(".node")
-      .data(bubble.nodes({children: normalizedData})
+      .data(bubble.nodes({children: sortedNormalizedData})
       .filter(function (d) { return !d.children; }))
     .enter().append("g")
       .attr("class", "node")
@@ -55,7 +58,7 @@ function TotalsByTopicController(fdVisualizationData) {
   node.append("text")
     .attr("dy", ".3em")
     .style("text-anchor", "middle")
-    .text(function(d) { return d.topicName.substring(0, d.r / 2); });
+    .text(function(d) { return d.topicName.substring(0, d.r / 2) + " - " + d.value; });
 
 
 }
