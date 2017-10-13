@@ -12,8 +12,8 @@
             format = d3.format(",d"),
             color = d3.scale.category20c();
 
-        topicsByName = _.indexBy(fdVisualizationData.products, 'TopicName');
-        topicTotalMessages = _.groupBy(fdVisualizationData.products, 'TopicName');
+        topicsByName = _.indexBy(fdVisualizationData.components, 'TopicName');
+        topicTotalMessages = _.groupBy(fdVisualizationData.components, 'TopicName');
 
         normalizedData = _(topicTotalMessages).transform(function (result, topicAssignments, topic) {
             if (topicsByName[topic]) {
