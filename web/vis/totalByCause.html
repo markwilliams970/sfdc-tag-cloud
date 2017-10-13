@@ -1,7 +1,7 @@
 <script type="text/javascript">
-  //var vis = angular.module('fdvis.totalByUsers', ['fdvis']);
+  //var vis = angular.module('fdvis.products', ['fdvis']);
 
-function TotalsByTopicController(fdVisualizationData) {
+function TotalsByBucketController(fdVisualizationData) {
   var
     normalizedData,
     sortedNormalizedData,
@@ -11,8 +11,8 @@ function TotalsByTopicController(fdVisualizationData) {
     format = d3.format(",d"),
     color = d3.scale.category20c();
 
-  topicsByName = _.indexBy(fdVisualizationData.topics, 'TopicName');
-  topicTotalMessages = _.groupBy(fdVisualizationData.topics, 'TopicName');
+  topicsByName = _.indexBy(fdVisualizationData.cause, 'TopicName');
+  topicTotalMessages = _.groupBy(fdVisualizationData.cause, 'TopicName');
 
   normalizedData = _(topicTotalMessages).transform(function (result, topicAssignments, topic) {
     if (topicsByName[topic]) {
@@ -63,6 +63,6 @@ function TotalsByTopicController(fdVisualizationData) {
 
 }
 </script>
-<div data-ng-controller="TotalsByTopicController" id="chart">
+<div data-ng-controller="TotalsByBucketController" id="chart">
 
 </div>
